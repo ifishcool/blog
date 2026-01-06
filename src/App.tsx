@@ -6,22 +6,22 @@ function App() {
     <div className="app-root">
       <header className="top-nav">
         <div className="top-nav-left">
-          <span className="top-nav-logo">Viyrs Studio</span>
+          <span className="top-nav-logo">冷鱼闲风</span>
         </div>
         <nav className="top-nav-menu">
           <button type="button" className="top-nav-item">
-            Work
+            作品
           </button>
           <button type="button" className="top-nav-item">
-            About
+            关于
           </button>
           <button type="button" className="top-nav-item">
-            Contact
+            联系
           </button>
         </nav>
         <div className="top-nav-right">
           <button type="button" className="top-nav-cta">
-            Download CV
+            下载简历
           </button>
         </div>
       </header>
