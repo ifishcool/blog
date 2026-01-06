@@ -15,9 +15,9 @@ function App() {
           <button type="button" className="top-nav-item">
             关于
           </button>
-          <button type="button" className="top-nav-item">
+          {/* <button type="button" className="top-nav-item">
             联系
-          </button>
+          </button> */}
         </nav>
         {/* <div className="top-nav-right">
           <button type="button" className="top-nav-cta">
