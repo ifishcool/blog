@@ -82,7 +82,6 @@ function App() {
           className={`intro-gate ${
             introAnimatingOut ? "intro-gate--closing" : "intro-gate--open"
           }`}
-          onClick={handleIntroEnter}
         >
           <div className="intro-gate-inner">
             <p className="intro-gate-label">PORTFOLIO / OMAUKOL</p>
@@ -91,7 +90,7 @@ function App() {
                 OMA
               </span>
               <span className="intro-gate-title-part intro-gate-title-part--right">
-                UKOL
+                KOL
               </span>
             </h1>
             <p className="intro-gate-sub">DEV · AI PRODUCT · DESIGN</p>
@@ -184,7 +183,8 @@ function App() {
         )}
       </header>
 
-      <Hero />
+      {/* Only start Hero animations after intro gate is fully gone */}
+      <Hero introReady={!introVisible} />
     </div>
   );
 }
