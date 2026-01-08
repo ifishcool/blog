@@ -1,9 +1,9 @@
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { Physics2DPlugin } from "gsap/Physics2DPlugin";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
 
-gsap.registerPlugin(Physics2DPlugin, MotionPathPlugin);
+gsap.registerPlugin(MotionPathPlugin, ScrambleTextPlugin);
 
 type HeroProps = {
   introReady?: boolean;
@@ -34,39 +34,24 @@ const Hero = ({ introReady = true }: HeroProps) => {
       );
 
       if (titleRef.current) {
-        const words = titleRef.current.querySelectorAll(".hero-word");
-        const viewportH = window.innerHeight;
-        const groundY = viewportH - 140; // 贴近页面底部，留一点空间
+        const words =
+          titleRef.current.querySelectorAll<HTMLElement>(".hero-word");
 
-        // Phase 1: physics-based fall from顶部到接近底部，力度更大
-        tl.fromTo(
-          words,
-          {
-            y: -viewportH,
-            opacity: 1,
-          },
-          {
-            duration: 1.1,
-            physics2D: {
-              velocity: 1400,
-              angle: 90,
-              gravity: 2600,
-            },
-            stagger: 0.04,
-            onComplete: () => {
-              // 统一落在靠近底部的一条“地面线”
-              gsap.set(words, { y: groundY });
-            },
-          },
-          "-=0.3"
-        );
+        words.forEach((word, index) => {
+          const finalText = word.textContent || "";
+          // 先清空文字，避免初始闪现
+          word.textContent = "";
 
-        // Phase 2: 从底部“地面线”快速吸回标题位置
-        tl.to(words, {
-          y: 0,
-          duration: 0.7,
-          ease: "power3.out",
-          stagger: 0.03,
+          gsap.to(word, {
+            duration: 1.4,
+            delay: 0.4 + index * 0.12,
+            scrambleText: {
+              text: finalText,
+              chars: "01/\\_-+*",
+              speed: 0.4,
+            },
+            ease: "power2.out",
+          });
         });
       }
 
