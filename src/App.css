@@ -1144,19 +1144,6 @@ body::-webkit-scrollbar-thumb {
   flex-shrink: 0;
 }
 
-.oss-vault-card::before {
-  content: "";
-  position: absolute;
-  inset: -40%;
-  background: radial-gradient(
-    circle at 20% 0%,
-    rgba(182, 255, 43, 0.2),
-    transparent 60%
-  );
-  opacity: 0.6;
-  pointer-events: none;
-}
-
 .oss-vault-pill-row {
   display: inline-flex;
   gap: 0.5rem;
@@ -1242,6 +1229,34 @@ body::-webkit-scrollbar-thumb {
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9);
 }
 
+.oss-actions {
+  margin-top: 5.8rem;
+  display: flex;
+  justify-content: center;
+}
+
+.oss-shuffle-btn {
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  background: transparent;
+  padding: 0.55rem 1.6rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(226, 232, 240, 0.9);
+  cursor: pointer;
+}
+
+.oss-shuffle-btn:hover {
+  border-color: rgba(182, 255, 43, 0.9);
+  color: #f9fafb;
+}
+
+.oss-shuffle-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
 @media (max-width: 1024px) {
   .oss-track {
     gap: 1.4rem;
@@ -1255,5 +1270,65 @@ body::-webkit-scrollbar-thumb {
 
   .oss-track {
     display: flex;
+  }
+}
+
+/* Big footer strip */
+
+.big-footer {
+  padding: 3.5rem 2.5rem 2.5rem;
+}
+
+.big-footer-inner {
+  position: relative;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.big-footer-wordmark {
+  font-size: clamp(5rem, 16vw, 8.5rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0b0b0b;
+  -webkit-text-stroke: 1px rgba(249, 250, 251, 0.9);
+  text-stroke: 1px rgba(249, 250, 251, 0.9);
+}
+
+.big-footer-meta {
+  margin-top: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.9);
+}
+
+.big-footer-tags {
+  display: inline-flex;
+  gap: 0.35rem;
+}
+
+.big-footer-tag {
+  padding: 0.18rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+}
+
+.big-footer-copy {
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .big-footer {
+    padding: 3rem 1.5rem 2.5rem;
+  }
+
+  .big-footer-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
   }
 }

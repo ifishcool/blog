@@ -4,6 +4,7 @@ import Hero from "./sections/Hero";
 import ProjectsStrip from "./sections/ProjectsStrip";
 import TextScene from "./sections/TextScene";
 import OpenSourceShowcase from "./sections/OpenSourceShowcase";
+import BigFooter from "./sections/BigFooter";
 import IntroGate from "./components/layout/IntroGate";
 import TopNav from "./components/layout/TopNav";
 import { useIntroGate } from "./hooks/useIntroGate";
@@ -49,6 +50,7 @@ function App() {
       </div>
 
       <OpenSourceShowcase />
+      <BigFooter />
     </div>
   );
 }

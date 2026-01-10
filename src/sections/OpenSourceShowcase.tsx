@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
 export type OpenSourceRepoCard = {
@@ -38,6 +38,9 @@ const OSS_REPOS: OpenSourceRepoCard[] = [
 
 const OpenSourceShowcase = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const [visibleRepos, setVisibleRepos] =
+    useState<OpenSourceRepoCard[]>(OSS_REPOS);
+  const [isShuffling, setIsShuffling] = useState(false);
 
   useLayoutEffect(() => {
     if (!sectionRef.current) return;
@@ -45,6 +48,7 @@ const OpenSourceShowcase = () => {
     const ctx = gsap.context(() => {
       const section = sectionRef.current!;
       const cards = section.querySelectorAll<HTMLElement>(".oss-vault-card");
+      const shuffleBtn = section.querySelector<HTMLElement>(".oss-shuffle-btn");
 
       // Fade the whole section in when it enters the viewport
       gsap.from(section, {
@@ -54,12 +58,46 @@ const OpenSourceShowcase = () => {
         ease: "power3.out",
         scrollTrigger: {
           trigger: section,
-          start: "top 80%",
+          start: "top 85%",
           toggleActions: "play none none none",
         },
       });
 
       if (cards.length) {
+        // Entrance: cards expand out from the center when scrolled into view
+        gsap.from(cards, {
+          scale: 0.7,
+          opacity: 0,
+          y: 80,
+          duration: 0.9,
+          ease: "power3.out",
+          stagger: {
+            each: 0.12,
+            from: "center",
+          },
+          scrollTrigger: {
+            trigger: section,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        });
+
+        if (shuffleBtn) {
+          // Shuffle button enters slightly after cards, from center
+          gsap.from(shuffleBtn, {
+            scale: 0.7,
+            opacity: 0,
+            y: 40,
+            duration: 0.7,
+            ease: "back.out(1.8)",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 80%",
+              toggleActions: "play none none none",
+            },
+          });
+        }
+
         // Set initial rotation so center card正面，两侧略微倾斜
         cards.forEach((card, index) => {
           const mid = (cards.length - 1) / 2;
@@ -74,7 +112,7 @@ const OpenSourceShowcase = () => {
         // Create an orbital-style horizontal sway with rotation
         gsap.to(cards, {
           x: (i) => (i - (cards.length - 1) / 2) * 12,
-          y: (i) => Math.abs(i - (cards.length - 1) / 2) * 6,
+          y: (i) => Math.abs(i - (cards.length - 1) / 2) * 3,
           rotation: (i) => {
             const mid = (cards.length - 1) / 2;
             const offset = i - mid;
@@ -105,8 +143,8 @@ const OpenSourceShowcase = () => {
         </div>
 
         <div className="oss-track">
-          {OSS_REPOS.map((repo) => (
-            <article key={repo.id} className="oss-vault-card">
+          {visibleRepos.map((repo, index) => (
+            <article key={index} className="oss-vault-card">
               <div className="oss-vault-pill-row">
                 <span className="oss-vault-pill">OPEN SOURCE</span>
                 <span className="oss-vault-pill oss-vault-pill-muted">
@@ -131,6 +169,85 @@ const OpenSourceShowcase = () => {
               </button>
             </article>
           ))}
+        </div>
+
+        <div className="oss-actions">
+          <button
+            type="button"
+            className="oss-shuffle-btn"
+            disabled={isShuffling}
+            onClick={() => {
+              if (!sectionRef.current || isShuffling) return;
+
+              const cards =
+                sectionRef.current.querySelectorAll<HTMLElement>(
+                  ".oss-vault-card"
+                );
+
+              const shuffleBtn =
+                sectionRef.current.querySelector<HTMLElement>(
+                  ".oss-shuffle-btn"
+                );
+
+              if (!cards.length) return;
+
+              setIsShuffling(true);
+
+              const tl = gsap.timeline({
+                onComplete: () => {
+                  setIsShuffling(false);
+                },
+              });
+
+              tl.to(cards, {
+                scale: 0.86,
+                opacity: 0.55,
+                duration: 0.25,
+                ease: "power2.in",
+                stagger: 0.04,
+              })
+                .to(
+                  shuffleBtn,
+                  {
+                    scale: 0.9,
+                    opacity: 0.7,
+                    duration: 0.22,
+                    ease: "power2.in",
+                  },
+                  "<"
+                )
+                .add(() => {
+                  // 中间时刻替换卡片里的数据，模拟重新发牌
+                  setVisibleRepos((prev) => {
+                    const next = [...prev];
+                    for (let i = next.length - 1; i > 0; i -= 1) {
+                      const j = Math.floor(Math.random() * (i + 1));
+                      [next[i], next[j]] = [next[j], next[i]];
+                    }
+                    return next;
+                  });
+                })
+                .to(cards, {
+                  scale: 1,
+                  opacity: 1,
+                  duration: 0.32,
+                  ease: "back.out(1.6)",
+                  stagger: 0.06,
+                })
+                .to(
+                  shuffleBtn,
+                  {
+                    scale: 1,
+                    opacity: 1,
+                    duration: 0.26,
+                    ease: "back.out(1.6)",
+                  },
+                  "<"
+                );
+            }}
+          >
+            换一换
+          </button>
         </div>
       </div>
     </section>
