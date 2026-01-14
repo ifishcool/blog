@@ -13,6 +13,20 @@ const IntroGate: React.FC<IntroGateProps> = ({
 }) => {
   if (!visible && !animatingOut) return null;
 
+  const handleEnterClick = () => {
+    try {
+      const audio = new Audio("/click.mp3");
+      audio.volume = 0.3;
+      audio.play().catch(() => {
+        // Ignore play errors (e.g. autoplay restrictions)
+      });
+    } catch {
+      // Ignore Audio construction errors in non-browser environments
+    }
+
+    onEnter();
+  };
+
   return (
     <div
       className={`intro-gate ${
@@ -34,14 +48,14 @@ const IntroGate: React.FC<IntroGateProps> = ({
           <button
             type="button"
             className="intro-gate-button intro-gate-button--primary"
-            onClick={onEnter}
+            onClick={handleEnterClick}
           >
             Enter
           </button>
           <button
             type="button"
             className="intro-gate-button intro-gate-button--secondary"
-            onClick={onEnter}
+            onClick={handleEnterClick}
           >
             Just browse
           </button>
