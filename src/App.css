@@ -893,6 +893,125 @@ body::-webkit-scrollbar-thumb {
   filter: drop-shadow(0 0 18px rgba(168, 85, 247, 0.95));
 }
 
+/* Project detail modal from ProjectsStrip */
+
+.project-modal-overlay {
+  position: fixed;
+  inset: 0;
+
+  backdrop-filter: blur(18px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 7rem;
+  z-index: 80;
+}
+
+.project-modal-panel {
+  position: relative;
+  width: min(880px, 100% - 3rem);
+  max-height: calc(98vh - 10rem);
+  border-radius: 28px;
+  border: 1px solid rgba(148, 163, 184, 0.55);
+  background-color: #000000;
+  background-image: linear-gradient(
+      rgba(148, 163, 184, 0.12) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.12) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: -1px -1px;
+  box-shadow: 0 32px 120px rgba(0, 0, 0, 0.9);
+  padding: 1.6rem 1.7rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.project-modal-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.9);
+  margin-bottom: 0.4rem;
+}
+
+.project-modal-title {
+  font-size: 1.4rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #f9fafb;
+}
+
+.project-modal-meta {
+  margin-top: 0.2rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.9);
+}
+
+.project-modal-close {
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  background: rgba(0, 0, 0, 0.95);
+  color: rgba(226, 232, 240, 0.92);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.9rem;
+}
+
+.project-modal-close:hover {
+  border-color: rgba(182, 255, 43, 0.9);
+  color: #f9fafb;
+}
+
+.project-modal-body {
+  flex: 1;
+  padding-top: 0.4rem;
+  margin-top: 0.2rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.5);
+  overflow-y: auto;
+  overflow-x: hidden;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: rgba(226, 232, 240, 0.9);
+}
+
+.project-modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.project-modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.project-modal-body::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #b6ff2b, #22c55e);
+  border-radius: 999px;
+}
+
+@media (max-width: 768px) {
+  .project-modal-panel {
+    width: 100%;
+
+    border-radius: 0;
+  }
+
+  .project-modal-header {
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
 .project-card {
   width: 280px;
   min-height: 180px;

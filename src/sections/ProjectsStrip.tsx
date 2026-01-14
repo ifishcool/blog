@@ -1,6 +1,13 @@
-import { useLayoutEffect, useRef, type RefObject } from "react";
+import {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type RefObject,
+} from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ReactMarkdown from "react-markdown";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,6 +21,7 @@ type ProjectCard = {
   title: string;
   meta: string;
   desc: string;
+  bodyMd: string;
 };
 
 const PROJECT_CARDS: ProjectCard[] = [
@@ -22,30 +30,193 @@ const PROJECT_CARDS: ProjectCard[] = [
     title: "Generative Sketchpad",
     meta: "AI · Product · Frontend",
     desc: "Real-time canvas for exploring model-assisted drawing and interaction patterns.",
+    bodyMd: `# Generative Sketchpad
+
+An experimental **real-time canvas** for exploring model-assisted drawing and interaction patterns.
+
+## What it explores
+
+- Mixing human sketching with generative AI
+- Fast iteration loops on layout and composition
+- Lightweight tooling that feels more like play than tooling
+
+## Stack
+
+- React + GSAP motion
+- Canvas-based rendering experiments
+## What it explores
+
+- Mixing human sketching with generative AI
+- Fast iteration loops on layout and composition
+- Lightweight tooling that feels more like play than tooling
+
+## Stack
+
+- React + GSAP motion
+- Canvas-based rendering experiments## What it explores
+
+- Mixing human sketching with generative AI
+- Fast iteration loops on layout and composition
+- Lightweight tooling that feels more like play than tooling
+
+## Stack
+
+- React + GSAP motion
+- Canvas-based rendering experiments## What it explores
+
+- Mixing human sketching with generative AI
+- Fast iteration loops on layout and composition
+- Lightweight tooling that feels more like play than tooling
+
+## Stack
+
+- React + GSAP motion
+- Canvas-based rendering experiments## What it explores
+
+- Mixing human sketching with generative AI
+- Fast iteration loops on layout and composition
+- Lightweight tooling that feels more like play than tooling
+
+## Stack
+
+- React + GSAP motion
+- Canvas-based rendering experiments## What it explores
+
+- Mixing human sketching with generative AI
+- Fast iteration loops on layout and composition
+- Lightweight tooling that feels more like play than tooling
+
+## Stack
+
+- React + GSAP motion
+- Canvas-based rendering experiments
+- LLM-assisted ideation workflows`,
   },
   {
     id: "prompt-playground",
     title: "Prompt Playground",
     meta: "LLM · Tools",
     desc: "A tool for designing, testing and visualizing complex prompt flows for multi-agent systems.",
+    bodyMd: `# Prompt Playground
+
+Design, test and visualize **complex prompt flows** for multi-agent systems.
+
+## Highlights
+
+- Node-based flow editor for prompts
+- Inline test runs with token + latency stats
+- Versioned prompt snippets you can remix
+Design, test and visualize **complex prompt flows** for multi-agent systems.
+
+## Highlights
+
+- Node-based flow editor for prompts
+- Inline test runs with token + latency stats
+- Versioned prompt snippets you can remixDesign, test and visualize **complex prompt flows** for multi-agent systems.
+
+## Highlights
+
+- Node-based flow editor for prompts
+- Inline test runs with token + latency stats
+- Versioned prompt snippets you can remixDesign, test and visualize **complex prompt flows** for multi-agent systems.
+
+## Highlights
+
+- Node-based flow editor for prompts
+- Inline test runs with token + latency stats
+- Versioned prompt snippets you can remixDesign, test and visualize **complex prompt flows** for multi-agent systems.
+
+## Highlights
+
+- Node-based flow editor for prompts
+- Inline test runs with token + latency stats
+- Versioned prompt snippets you can remixDesign, test and visualize **complex prompt flows** for multi-agent systems.
+
+## Highlights
+
+- Node-based flow editor for prompts
+- Inline test runs with token + latency stats
+- Versioned prompt snippets you can remixDesign, test and visualize **complex prompt flows** for multi-agent systems.
+
+## Highlights
+
+- Node-based flow editor for prompts
+- Inline test runs with token + latency stats
+- Versioned prompt snippets you can remixDesign, test and visualize **complex prompt flows** for multi-agent systems.
+
+## Highlights
+
+- Node-based flow editor for prompts
+- Inline test runs with token + latency stats
+- Versioned prompt snippets you can remix
+## Stack
+
+- React + TypeScript
+- API-first prompt execution layer
+- Experimental evaluation hooks`,
   },
   {
     id: "neon-poster-engine",
     title: "Neon Poster Engine",
     meta: "Design · Motion",
     desc: "Procedural poster generator with GSAP-driven motion previews and exportable frames.",
+    bodyMd: `# Neon Poster Engine
+
+Procedural **poster generator** with GSAP-driven motion previews and exportable frames.
+
+## What it does
+
+- Generates neon / acid-inspired layouts
+- Lets you scrub through motion states before export
+- Exports stills for print or social
+
+## Ingredients
+
+- GSAP timelines
+- Parametric layout presets
+- High-contrast type experiments`,
   },
   {
     id: "studio-dashboard",
     title: "Studio Dashboard",
     meta: "Web · Data",
     desc: "A minimal control room interface for monitoring experiments and deployments.",
+    bodyMd: `# Studio Dashboard
+
+A minimal **control room interface** for monitoring experiments and deployments.
+
+## Focus
+
+- Quick at-a-glance status
+- Minimal chrome, strong typography
+- Dark-mode first, with accent signals
+
+## Tech
+
+- React + TypeScript
+- API integrations for metrics & logs
+- Micro-interactions to highlight change`,
   },
   {
     id: "omaukol-index",
     title: "OMAUKOL Index",
     meta: "Personal · Archive",
     desc: "Living index of works, notes and visual experiments across code, AI and design.",
+    bodyMd: `# OMAUKOL Index
+
+A living **index of works, notes and visual experiments** across code, AI and design.
+
+## Intent
+
+- Capture fragments instead of polished case studies
+- Link ideas across time
+- Keep the archive lightweight and explorable
+
+## Surfaces
+
+- Short notes
+- Visual experiments
+- Links into larger projects`,
   },
 ];
 
@@ -74,6 +245,7 @@ const THUMB_CLASSES: string[] = [
 
 const ProjectsStrip = ({ introReady = true, shellRef }: ProjectsStripProps) => {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const [activeProject, setActiveProject] = useState<ProjectCard | null>(null);
 
   useLayoutEffect(() => {
     if (!introReady || !sectionRef.current) return;
@@ -172,6 +344,24 @@ const ProjectsStrip = ({ introReady = true, shellRef }: ProjectsStripProps) => {
     };
   }, [introReady, shellRef]);
 
+  // When modal is open, lock background scroll so only the article scrolls
+  useEffect(() => {
+    if (!activeProject) return undefined;
+
+    const { style: bodyStyle } = document.body;
+    const { style: htmlStyle } = document.documentElement;
+    const prevBodyOverflow = bodyStyle.overflow;
+    const prevHtmlOverflow = htmlStyle.overflow;
+
+    bodyStyle.overflow = "hidden";
+    htmlStyle.overflow = "hidden";
+
+    return () => {
+      bodyStyle.overflow = prevBodyOverflow;
+      htmlStyle.overflow = prevHtmlOverflow;
+    };
+  }, [activeProject]);
+
   return (
     <section className="projects-strip" ref={sectionRef}>
       <div className="projects-strip-inner">
@@ -182,7 +372,11 @@ const ProjectsStrip = ({ introReady = true, shellRef }: ProjectsStripProps) => {
               THUMB_CLASSES[index % THUMB_CLASSES.length] ?? THUMB_CLASSES[0];
 
             return (
-              <article className="project-card" key={project.id}>
+              <article
+                className="project-card"
+                key={project.id}
+                onClick={() => setActiveProject(project)}
+              >
                 <div className={"project-card-thumb " + thumbClass} />
                 <h3 className="project-card-title">{project.title}</h3>
                 <p className="project-card-meta">{project.meta}</p>
@@ -218,6 +412,37 @@ const ProjectsStrip = ({ introReady = true, shellRef }: ProjectsStripProps) => {
             />
           </svg>
         </div>
+
+        {activeProject && (
+          <div
+            className="project-modal-overlay"
+            onClick={() => setActiveProject(null)}
+          >
+            <div
+              className="project-modal-panel"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="project-modal-header">
+                <div>
+                  <div className="project-modal-label">PROJECT STORY</div>
+                  <h2 className="project-modal-title">{activeProject.title}</h2>
+                  <div className="project-modal-meta">{activeProject.meta}</div>
+                </div>
+                <button
+                  type="button"
+                  className="project-modal-close"
+                  onClick={() => setActiveProject(null)}
+                >
+                  Close
+                </button>
+              </div>
+
+              <div className="project-modal-body">
+                <ReactMarkdown>{activeProject.bodyMd}</ReactMarkdown>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
