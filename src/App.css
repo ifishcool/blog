@@ -21,6 +21,7 @@ body {
 button,
 a[href],
 [role="button"],
+#card-click,
 .cursor-pointer {
   cursor: url("/cursor-cartoon-button.png") 32 32, pointer;
 }
@@ -958,16 +959,21 @@ body::-webkit-scrollbar-thumb {
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding-top: 7rem;
+
   z-index: 80;
 }
 
 .project-modal-panel {
   position: relative;
   width: min(880px, 100% - 3rem);
-  max-height: calc(98vh - 10rem);
+  max-height: calc(90vh);
   border-radius: 28px;
   border: 1px solid rgba(148, 163, 184, 0.55);
+  border-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 28px;
+  border-bottom-right-radius: 28px;
   background-color: #000000;
   background-image: linear-gradient(
       rgba(148, 163, 184, 0.12) 1px,
@@ -1170,6 +1176,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .project-card-title {
+  color: #ffffff;
   margin: 0 0 0.45rem;
   font-size: 0.98rem;
   letter-spacing: 0.12em;

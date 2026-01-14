@@ -373,6 +373,8 @@ const THUMB_CLASSES: string[] = [
 const ProjectsStrip = ({ introReady = true, shellRef }: ProjectsStripProps) => {
   const sectionRef = useRef<HTMLElement | null>(null);
   const [activeProject, setActiveProject] = useState<ProjectCard | null>(null);
+  const hoverAudioRef = useRef<HTMLAudioElement | null>(null);
+  const expandAudioRef = useRef<HTMLAudioElement | null>(null);
 
   useLayoutEffect(() => {
     if (!introReady || !sectionRef.current) return;
@@ -406,6 +408,20 @@ const ProjectsStrip = ({ introReady = true, shellRef }: ProjectsStripProps) => {
       // Hover interaction: quick pop up on enter, snap back on leave
       cards.forEach((card) => {
         const handleEnter = () => {
+          try {
+            if (!hoverAudioRef.current) {
+              hoverAudioRef.current = new Audio("/clickSmall.mp3");
+              hoverAudioRef.current.volume = 0.3;
+            }
+
+            hoverAudioRef.current.currentTime = 0;
+            hoverAudioRef.current.play().catch(() => {
+              // ignore play errors
+            });
+          } catch {
+            // ignore Audio construction errors
+          }
+
           gsap.to(card, {
             y: -18,
             scale: 1.03,
@@ -512,10 +528,10 @@ const ProjectsStrip = ({ introReady = true, shellRef }: ProjectsStripProps) => {
     }
 
     gsap.to(panel, {
-      y: 140,
+      y: -300,
       opacity: 0,
-      scale: 0.9,
-      duration: 0.4,
+      scale: 1,
+      duration: 1,
       ease: "power2.in",
       onComplete: () => {
         setActiveProject(null);
@@ -523,7 +539,7 @@ const ProjectsStrip = ({ introReady = true, shellRef }: ProjectsStripProps) => {
     });
   };
 
-  // Animate modal panel entrance: slide up from bottom with a soft bounce
+  // Animate modal panel entrance: drop down from top with a soft bounce
   useEffect(() => {
     if (!activeProject || !sectionRef.current) return;
 
@@ -537,17 +553,17 @@ const ProjectsStrip = ({ introReady = true, shellRef }: ProjectsStripProps) => {
       gsap.fromTo(
         panel,
         {
-          y: 140,
+          y: -300,
           opacity: 0,
-          scale: 0.9,
-          transformOrigin: "50% 100%",
+          scale: 1,
+          transformOrigin: "50% 0%",
         },
         {
           y: 0,
           opacity: 1,
           scale: 1,
-          duration: 0.6,
-          ease: "back.out(2.1)",
+          duration: 1,
+          ease: "power2.out",
         }
       );
     }, sectionRef);
@@ -569,9 +585,25 @@ const ProjectsStrip = ({ introReady = true, shellRef }: ProjectsStripProps) => {
 
             return (
               <article
+                id="card-click"
                 className="project-card"
                 key={projectId}
-                onClick={() => setActiveProject(project)}
+                onClick={() => {
+                  setActiveProject(project);
+                  try {
+                    if (!expandAudioRef.current) {
+                      expandAudioRef.current = new Audio("/expand.mp3");
+                      expandAudioRef.current.volume = 0.3;
+                    }
+
+                    expandAudioRef.current.currentTime = 0;
+                    expandAudioRef.current.play().catch(() => {
+                      // ignore play errors
+                    });
+                  } catch {
+                    // ignore Audio construction errors
+                  }
+                }}
               >
                 <div className={"project-card-thumb " + thumbClass} />
                 <h3 className="project-card-title">{project.title}</h3>
