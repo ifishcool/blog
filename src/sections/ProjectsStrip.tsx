@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { gsap } from "gsap";
 import ReactMarkdown from "react-markdown";
-import type { Components } from "react-markdown";
+
 import remarkGfm from "remark-gfm";
-import rehypeRaw from "rehype-raw";
-import { codeToHtml } from "shiki";
+
 import { PROJECT_CARDS, type ProjectCard } from "../config/projects";
 import { useProjectsStripAnimation } from "../hooks/useProjectsStripAnimation";
 
@@ -35,71 +34,6 @@ const THUMB_CLASSES: string[] = [
   "project-card-thumb--nineteen",
   "project-card-thumb--twenty",
 ];
-
-type CodeProps = {
-  inline?: boolean;
-  className?: string;
-  children?: React.ReactNode;
-};
-
-const CodeBlock = ({ inline, className, children, ...props }: CodeProps) => {
-  const [html, setHtml] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (inline) return;
-
-    const code = String(children ?? "");
-    const match = /language-(\w+)/.exec(className ?? "");
-    const lang = match?.[1] ?? "text";
-
-    let cancelled = false;
-
-    (async () => {
-      try {
-        const fullHtml = await codeToHtml(code, {
-          lang,
-          theme: "slack-dark",
-        });
-
-        if (cancelled) return;
-
-        const innerMatch = fullHtml.match(
-          /<pre[^>]*><code[^>]*>([\s\S]*?)<\/code><\/pre>/i
-        );
-        const inner = innerMatch ? innerMatch[1] : code;
-        setHtml(inner);
-      } catch {
-        if (!cancelled) {
-          setHtml(null);
-        }
-      }
-    })();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [children, className, inline]);
-
-  if (inline || !html) {
-    return (
-      <code className={className} {...props}>
-        {children}
-      </code>
-    );
-  }
-
-  return (
-    <code
-      className={className}
-      dangerouslySetInnerHTML={{ __html: html }}
-      {...props}
-    />
-  );
-};
-
-const markdownComponents: Components = {
-  code: CodeBlock,
-};
 
 const ProjectsStrip = ({ introReady = true, shellRef }: ProjectsStripProps) => {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -281,11 +215,7 @@ const ProjectsStrip = ({ introReady = true, shellRef }: ProjectsStripProps) => {
               </div>
 
               <div className="project-modal-body">
-                <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
-                  rehypePlugins={[rehypeRaw]}
-                  components={markdownComponents}
-                >
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
                   {activeProject.bodyMd}
                 </ReactMarkdown>
               </div>
