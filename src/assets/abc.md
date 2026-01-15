@@ -1,5 +1,15 @@
 # 欢迎来到 ArenaPro React
 
+## 欢迎来到 ArenaPro React
+
+### 欢迎来到 ArenaPro React
+
+#### 欢迎来到 ArenaPro React
+
+##### 欢迎来到 ArenaPro React
+
+###### 欢迎来到 ArenaPro React
+
 ![](https://assets.box3.fun/u226/1Jlf7TJjuX5k/Dxd5R5_KqkiTi7fwlh5rWRdCwr4ZL4ngkKNgzbxq-L0.gif)
 
 这是一个由 Claude 3.7 搭建的神岛 React 示例项目：[双向选择器-示例](https://dao3.fun/exp/experience/detail/100429428)
@@ -65,10 +75,11 @@ headerText.size.scale.copy(Vec2.create({ x: 1, y: 1 }));
 headerText.size.offset.copy(Vec2.create({ x: 0, y: 0 }));
 headerText.position.offset.copy(Vec2.create({ x: 0, y: 0 }));
 updateHeaderText();
-renderList();
+renderList(); // [!code hl]
 ```
 
-```tsx [React（声明式）]
+```tsx
+// 卧虎诶嘿嘿嘿嘿嘿
 function App() {
   const [count, setCount] = useState(-5);
   const [history, setHistory] = useState<string[]>([]);

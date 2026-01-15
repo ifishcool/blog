@@ -27,10 +27,15 @@ const TextScene = () => {
         {
           opacity: 1,
           y: 0,
-          rotation: () => gsap.utils.random(-3, 3),
+          //  rotation: () => gsap.utils.random(-3, 3),
           duration: 0.6,
           ease: "back.out(2)",
           stagger: 0.08,
+          scrollTrigger: {
+            trigger: section,
+            start: "top 95%",
+            toggleActions: "play none none none",
+          },
         }
       );
 
@@ -38,7 +43,17 @@ const TextScene = () => {
       gsap.fromTo(
         section,
         { opacity: 0, y: 60 },
-        { opacity: 1, y: 0, duration: 1.2, ease: "power3.out" }
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 95%",
+            toggleActions: "play none none none",
+          },
+        }
       );
 
       // Scroll-based subtle parallax on desktop
