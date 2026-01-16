@@ -1,8 +1,8 @@
-import { useLayoutEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
+import { useLayoutEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
+import { ScrollSmoother } from 'gsap/ScrollSmoother';
 
 // Ensure required plugins are registered once
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, ScrollSmoother);
@@ -18,8 +18,8 @@ export const useSmoothScroll = () => {
     }
 
     const smoother = ScrollSmoother.create({
-      wrapper: "#smooth-wrapper",
-      content: "#smooth-content",
+      wrapper: '#smooth-wrapper',
+      content: '#smooth-content',
       smooth: 2,
       effects: true,
     });

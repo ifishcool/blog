@@ -64,7 +64,7 @@ const renderList = () => {
 box.parent = ui;
 box.backgroundColor.copy(Vec3.create({ r: 62, g: 185, b: 185 }));
 box.position.offset.copy(Vec2.create({ x: 10, y: 20 }));
-box.events.on("pointerdown", () => {
+box.events.on('pointerdown', () => {
   count++;
   updateHeaderText();
   history.unshift(`第${count + 5}次点击时间： ${Date.now()}`);

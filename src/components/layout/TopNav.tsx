@@ -1,6 +1,6 @@
-import React, { forwardRef } from "react";
-import { gsap } from "gsap";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import React, { forwardRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
 gsap.registerPlugin(ScrollToPlugin);
 
@@ -16,7 +16,7 @@ const TopNav = forwardRef<HTMLElement, TopNavProps>(
     const handleScrollTo = (target: string) => {
       gsap.to(window, {
         duration: 0.9,
-        ease: "power3.inOut",
+        ease: 'power3.inOut',
         scrollTo: { y: target, offsetY: 90 },
       });
     };
@@ -30,38 +30,38 @@ const TopNav = forwardRef<HTMLElement, TopNavProps>(
       <header
         ref={headerRef}
         className={`top-nav ${
-          menuOpen || menuAnimatingOut ? "top-nav--open" : ""
+          menuOpen || menuAnimatingOut ? 'top-nav--open' : ''
         }`}
       >
-        <div className="top-nav-inner">
-          <div className="top-nav-left">
+        <div className='top-nav-inner'>
+          <div className='top-nav-left'>
             <button
-              type="button"
-              className="top-nav-menu-toggle"
+              type='button'
+              className='top-nav-menu-toggle'
               onClick={onToggleMenu}
             >
-              <span className="top-nav-menu-icon">≡</span>
-              <span className="top-nav-menu-label">Menu</span>
+              <span className='top-nav-menu-icon'>≡</span>
+              <span className='top-nav-menu-label'>Menu</span>
             </button>
           </div>
 
-          <div className="top-nav-center">
-            <span className="top-nav-logo">LENGYU XIANFENG</span>
+          <div className='top-nav-center'>
+            <span className='top-nav-logo'>LENGYU XIANFENG</span>
           </div>
 
-          <div className="top-nav-right">
-            <div className="top-nav-actions">
+          <div className='top-nav-right'>
+            <div className='top-nav-actions'>
               <button
-                type="button"
-                className="top-nav-pill top-nav-pill-accent"
+                type='button'
+                className='top-nav-pill top-nav-pill-accent'
               >
                 Join
               </button>
             </div>
           </div>
 
-          <div className="top-nav-ticker">
-            <div className="top-nav-ticker-track">
+          <div className='top-nav-ticker'>
+            <div className='top-nav-ticker-track'>
               LENGYU XIANFENG · Developer × AI Product × Design · Personal Lab
               &nbsp;&nbsp; · &nbsp;&nbsp; LENGYU XIANFENG · Developer × AI
               Product × Design · Personal Lab &nbsp;&nbsp; · &nbsp;&nbsp;
@@ -74,35 +74,35 @@ const TopNav = forwardRef<HTMLElement, TopNavProps>(
             ref={dropdownRef}
             className={`top-nav-dropdown ${
               menuAnimatingOut
-                ? "top-nav-dropdown--closing"
-                : "top-nav-dropdown--open"
+                ? 'top-nav-dropdown--closing'
+                : 'top-nav-dropdown--open'
             }`}
           >
             <button
-              type="button"
-              className="top-nav-dropdown-item"
-              onClick={() => handleSelect("#projects")}
+              type='button'
+              className='top-nav-dropdown-item'
+              onClick={() => handleSelect('#projects')}
             >
               Portfolio · Projects
             </button>
             <button
-              type="button"
-              className="top-nav-dropdown-item"
-              onClick={() => handleSelect("#about")}
+              type='button'
+              className='top-nav-dropdown-item'
+              onClick={() => handleSelect('#about')}
             >
               About Me · About
             </button>
             <button
-              type="button"
-              className="top-nav-dropdown-item"
-              onClick={() => handleSelect("#notes")}
+              type='button'
+              className='top-nav-dropdown-item'
+              onClick={() => handleSelect('#notes')}
             >
               Blog / Notes · Notes
             </button>
             <button
-              type="button"
-              className="top-nav-dropdown-item"
-              onClick={() => handleSelect("#contact")}
+              type='button'
+              className='top-nav-dropdown-item'
+              onClick={() => handleSelect('#contact')}
             >
               Contact · Contact
             </button>
@@ -113,6 +113,6 @@ const TopNav = forwardRef<HTMLElement, TopNavProps>(
   }
 );
 
-TopNav.displayName = "TopNav";
+TopNav.displayName = 'TopNav';
 
 export default TopNav;

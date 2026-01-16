@@ -1,6 +1,6 @@
-import { useLayoutEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLayoutEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,12 +18,12 @@ export const useProjectsStripAnimation = (
     const ctx = gsap.context(() => {
       const sectionRoot = sectionEl!;
       const triggerRoot = shellRef?.current ?? sectionRoot;
-      const cards = sectionRoot.querySelectorAll<HTMLElement>(".project-card");
+      const cards = sectionRoot.querySelectorAll<HTMLElement>('.project-card');
       const track = sectionRoot.querySelector<HTMLElement>(
-        ".projects-strip-track"
+        '.projects-strip-track'
       );
       const planets = sectionRoot.querySelectorAll<SVGCircleElement>(
-        ".projects-orbit-planet"
+        '.projects-orbit-planet'
       );
 
       if (cards.length) {
@@ -31,10 +31,10 @@ export const useProjectsStripAnimation = (
           y: () => gsap.utils.random(60, 140),
           opacity: 0,
           duration: 1.3,
-          ease: "back.out(1.7)",
+          ease: 'back.out(1.7)',
           stagger: {
             each: 0.12,
-            from: "random",
+            from: 'random',
           },
         });
       }
@@ -45,7 +45,7 @@ export const useProjectsStripAnimation = (
           if (hoverAudioRef) {
             try {
               if (!hoverAudioRef.current) {
-                hoverAudioRef.current = new Audio("/clickSmall.mp3");
+                hoverAudioRef.current = new Audio('/clickSmall.mp3');
                 hoverAudioRef.current.volume = 0.3;
               }
 
@@ -62,7 +62,7 @@ export const useProjectsStripAnimation = (
             y: -18,
             scale: 1.03,
             duration: 0.18,
-            ease: "back.out(2.1)",
+            ease: 'back.out(2.1)',
           });
         };
 
@@ -71,12 +71,12 @@ export const useProjectsStripAnimation = (
             y: 0,
             scale: 1,
             duration: 0.16,
-            ease: "back.in(1.8)",
+            ease: 'back.in(1.8)',
           });
         };
 
-        card.addEventListener("mouseenter", handleEnter);
-        card.addEventListener("mouseleave", handleLeave);
+        card.addEventListener('mouseenter', handleEnter);
+        card.addEventListener('mouseleave', handleLeave);
       });
 
       // Scroll-triggered horizontal movement: user scrolls down, track
@@ -93,10 +93,10 @@ export const useProjectsStripAnimation = (
           { xPercent: 0 },
           {
             xPercent: -100,
-            ease: "none",
+            ease: 'none',
             scrollTrigger: {
               trigger: triggerRoot,
-              start: "top top",
+              start: 'top top',
               end: `+=${scrollDistance}`,
               scrub: 3,
               pin: true,
@@ -109,7 +109,7 @@ export const useProjectsStripAnimation = (
                   scale: 0.6 + visible * 0.5,
                   opacity: visible,
                   duration: 0.25,
-                  ease: "sine.out",
+                  ease: 'sine.out',
                 });
               },
             },
@@ -120,7 +120,7 @@ export const useProjectsStripAnimation = (
 
     return () => {
       if (sectionEl) {
-        const cards = sectionEl.querySelectorAll<HTMLElement>(".project-card");
+        const cards = sectionEl.querySelectorAll<HTMLElement>('.project-card');
         cards.forEach((card) => {
           gsap.killTweensOf(card);
         });

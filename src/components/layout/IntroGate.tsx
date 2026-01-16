@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export type IntroGateProps = {
   visible: boolean;
@@ -15,7 +15,7 @@ const IntroGate: React.FC<IntroGateProps> = ({
 
   const handleEnterClick = () => {
     try {
-      const audio = new Audio("/click.mp3");
+      const audio = new Audio('/click.mp3');
       audio.volume = 0.3;
       audio.play().catch(() => {
         // Ignore play errors (e.g. autoplay restrictions)
@@ -30,31 +30,31 @@ const IntroGate: React.FC<IntroGateProps> = ({
   return (
     <div
       className={`intro-gate ${
-        animatingOut ? "intro-gate--closing" : "intro-gate--open"
+        animatingOut ? 'intro-gate--closing' : 'intro-gate--open'
       }`}
     >
-      <div className="intro-gate-inner">
-        <p className="intro-gate-label">PORTFOLIO / OMAUKOL</p>
-        <h1 className="intro-gate-title">
-          <span className="intro-gate-title-part intro-gate-title-part--left">
+      <div className='intro-gate-inner'>
+        <p className='intro-gate-label'>PORTFOLIO / OMAUKOL</p>
+        <h1 className='intro-gate-title'>
+          <span className='intro-gate-title-part intro-gate-title-part--left'>
             OMA
           </span>
-          <span className="intro-gate-title-part intro-gate-title-part--right">
+          <span className='intro-gate-title-part intro-gate-title-part--right'>
             KOL
           </span>
         </h1>
-        <p className="intro-gate-sub">DEV · AI PRODUCT · DESIGN</p>
-        <div className="intro-gate-button-row">
+        <p className='intro-gate-sub'>DEV · AI PRODUCT · DESIGN</p>
+        <div className='intro-gate-button-row'>
           <button
-            type="button"
-            className="intro-gate-button intro-gate-button--primary"
+            type='button'
+            className='intro-gate-button intro-gate-button--primary'
             onClick={handleEnterClick}
           >
             Enter
           </button>
           <button
-            type="button"
-            className="intro-gate-button intro-gate-button--secondary"
+            type='button'
+            className='intro-gate-button intro-gate-button--secondary'
             onClick={handleEnterClick}
           >
             Just browse

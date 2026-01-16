@@ -1,0 +1,12 @@
+node_modules/
+.husky/
+**/.log/
+**/dist/
+package-lock.json
+yarn.lock
+bun.lock
+pnpm-lock.yaml
+.prettierrc
+.prettierignore
+.lintstagedrc
+.gitignore

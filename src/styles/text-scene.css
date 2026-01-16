@@ -16,7 +16,7 @@
 }
 
 .text-scene::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: -20%;
   pointer-events: none;

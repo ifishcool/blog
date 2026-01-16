@@ -1,5 +1,5 @@
-import { useLayoutEffect } from "react";
-import { gsap } from "gsap";
+import { useLayoutEffect } from 'react';
+import { gsap } from 'gsap';
 
 export const useBigFooterAnimation = (
   sectionRef: React.RefObject<HTMLElement | null>
@@ -10,17 +10,17 @@ export const useBigFooterAnimation = (
     const ctx = gsap.context(() => {
       const section = sectionRef.current!;
       const planets = section.querySelectorAll<SVGCircleElement>(
-        ".big-footer-orbit-planet"
+        '.big-footer-orbit-planet'
       );
       const orbits = section.querySelectorAll<SVGPathElement>(
-        ".big-footer-orbit-path"
+        '.big-footer-orbit-path'
       );
 
       gsap.from(section, {
         opacity: 0,
         y: 80,
         duration: 1,
-        ease: "power3.out",
+        ease: 'power3.out',
       });
 
       if (planets.length) {
@@ -28,12 +28,12 @@ export const useBigFooterAnimation = (
           y: (i) => (i % 2 === 0 ? -6 : 6),
           x: (i) => (i - (planets.length - 1) / 2) * 3,
           duration: 4.5,
-          ease: "sine.inOut",
+          ease: 'sine.inOut',
           yoyo: true,
           repeat: -1,
           stagger: {
             each: 0.6,
-            from: "edges",
+            from: 'edges',
           },
         });
       }
@@ -45,12 +45,12 @@ export const useBigFooterAnimation = (
           {
             strokeDashoffset: 0,
             duration: 8,
-            ease: "sine.inOut",
+            ease: 'sine.inOut',
             repeat: -1,
             yoyo: true,
             stagger: {
               each: 1.2,
-              from: "center",
+              from: 'center',
             },
           }
         );

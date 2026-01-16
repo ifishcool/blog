@@ -1,22 +1,28 @@
 /* App layout */
-@import "./styles/project-modal.css";
-@import "./styles/project-modal.css";
-@import "./styles/hero.css";
-@import "./styles/projects-strip.css";
-@import "./styles/text-scene.css";
-@import "./styles/oss-section.css";
-@import "./styles/big-footer.css";
+@import './styles/project-modal.css';
+@import './styles/project-modal.css';
+@import './styles/hero.css';
+@import './styles/projects-strip.css';
+@import './styles/text-scene.css';
+@import './styles/oss-section.css';
+@import './styles/big-footer.css';
 @font-face {
-  font-family: "PacificoLocal";
-  src: url("./assets/Pacifico-Regular.ttf") format("truetype");
+  font-family: 'PacificoLocal';
+  src: url('./assets/Pacifico-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 :root {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-    Helvetica, Arial, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'SF Pro Text',
+    Helvetica,
+    Arial,
+    sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -46,21 +52,25 @@ a:hover {
 }
 
 .pacifico-regular {
-  font-family: "PacificoLocal", cursive;
+  font-family: 'PacificoLocal', cursive;
   font-weight: 400;
   font-style: normal;
 }
 
 body {
-  cursor: url("/cursor-cartoon.png") 11 11, auto;
+  cursor:
+    url('/cursor-cartoon.png') 11 11,
+    auto;
 }
 
 button,
 a[href],
-[role="button"],
+[role='button'],
 #card-click,
 .cursor-pointer {
-  cursor: url("/cursor-cartoon-button.png") 32 32, pointer;
+  cursor:
+    url('/cursor-cartoon-button.png') 32 32,
+    pointer;
 }
 ::selection {
   background: #b6ff2b;
@@ -102,11 +112,8 @@ body::-webkit-scrollbar-thumb {
   min-height: 100vh;
 
   background-color: #050505;
-  background-image: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0.08) 1px,
-      transparent 1px
-    ),
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
   background-size: 40px 40px;
   color: #f5f5f5;
@@ -159,12 +166,14 @@ body::-webkit-scrollbar-thumb {
 }
 
 .intro-gate-title-part--left {
-  animation: intro-title-flicker-left 0.8s linear 0.45s 1,
+  animation:
+    intro-title-flicker-left 0.8s linear 0.45s 1,
     intro-title-left-shift 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
 }
 
 .intro-gate-title-part--right {
-  animation: intro-title-flicker-right 0.8s linear 0.45s 1,
+  animation:
+    intro-title-flicker-right 0.8s linear 0.45s 1,
     intro-title-right-shift 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
 }
 
@@ -424,7 +433,8 @@ body::-webkit-scrollbar-thumb {
   bottom: -12px;
   height: 18px;
   border-radius: 999px;
-  background: repeating-linear-gradient(
+  background:
+    repeating-linear-gradient(
       90deg,
       rgba(0, 0, 0, 0.14) 0,
       rgba(0, 0, 0, 0.14) 1px,
@@ -1057,7 +1067,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .text-scene::before {
-  content: "";
+  content: '';
   position: absolute;
   inset: -20%;
 

@@ -1,5 +1,5 @@
-import type React from "react";
-import { useCallback, useEffect, useState } from "react";
+import type React from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export const useTopNavMenu = (
   headerRef: React.RefObject<HTMLElement | null>,
@@ -43,10 +43,10 @@ export const useTopNavMenu = (
       closeMenu();
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [menuOpen, menuAnimatingOut, headerRef, dropdownRef, closeMenu]);
 

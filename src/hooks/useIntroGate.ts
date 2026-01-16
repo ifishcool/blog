@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react';
 
 export const useIntroGate = () => {
   const [visible, setVisible] = useState(true);
@@ -20,10 +20,10 @@ export const useIntroGate = () => {
       handleEnter();
     };
 
-    window.addEventListener("keydown", handleKey);
+    window.addEventListener('keydown', handleKey);
 
     return () => {
-      window.removeEventListener("keydown", handleKey);
+      window.removeEventListener('keydown', handleKey);
     };
   }, [visible, animatingOut, handleEnter]);
 

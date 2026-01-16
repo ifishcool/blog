@@ -1,5 +1,5 @@
-import { useLayoutEffect } from "react";
-import { gsap } from "gsap";
+import { useLayoutEffect } from 'react';
+import { gsap } from 'gsap';
 
 export const useOpenSourceShowcaseAnimation = (
   sectionRef: React.RefObject<HTMLElement | null>
@@ -9,25 +9,25 @@ export const useOpenSourceShowcaseAnimation = (
 
     const ctx = gsap.context(() => {
       const section = sectionRef.current!;
-      const cards = section.querySelectorAll<HTMLElement>(".oss-vault-card");
-      const shuffleBtn = section.querySelector<HTMLElement>(".oss-shuffle-btn");
+      const cards = section.querySelectorAll<HTMLElement>('.oss-vault-card');
+      const shuffleBtn = section.querySelector<HTMLElement>('.oss-shuffle-btn');
       const planets =
-        section.querySelectorAll<SVGCircleElement>(".oss-orbit-planet");
+        section.querySelectorAll<SVGCircleElement>('.oss-orbit-planet');
 
       const mm = gsap.matchMedia();
 
       // Only run OSS animations on desktop / larger screens
-      mm.add("(min-width: 769px)", () => {
+      mm.add('(min-width: 769px)', () => {
         // Fade the whole section in when it enters the viewport
         gsap.from(section, {
           opacity: 0,
           y: 80,
           duration: 1.1,
-          ease: "power3.out",
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: section,
-            start: "top 85%",
-            toggleActions: "play none none none",
+            start: 'top 85%',
+            toggleActions: 'play none none none',
           },
         });
 
@@ -38,15 +38,15 @@ export const useOpenSourceShowcaseAnimation = (
             opacity: 0,
             y: 80,
             duration: 0.9,
-            ease: "power3.out",
+            ease: 'power3.out',
             stagger: {
               each: 0.12,
-              from: "center",
+              from: 'center',
             },
             scrollTrigger: {
               trigger: section,
-              start: "top 80%",
-              toggleActions: "play none none none",
+              start: 'top 80%',
+              toggleActions: 'play none none none',
             },
           });
 
@@ -57,11 +57,11 @@ export const useOpenSourceShowcaseAnimation = (
               opacity: 0,
               y: 40,
               duration: 0.7,
-              ease: "back.out(1.8)",
+              ease: 'back.out(1.8)',
               scrollTrigger: {
                 trigger: section,
-                start: "top 80%",
-                toggleActions: "play none none none",
+                start: 'top 80%',
+                toggleActions: 'play none none none',
               },
             });
           }
@@ -73,7 +73,7 @@ export const useOpenSourceShowcaseAnimation = (
             const baseRot = gsap.utils.clamp(-16, 16, offset * 8);
             gsap.set(card, {
               rotation: baseRot,
-              transformOrigin: "50% 100%",
+              transformOrigin: '50% 100%',
             });
           });
 
@@ -87,12 +87,12 @@ export const useOpenSourceShowcaseAnimation = (
               return gsap.utils.clamp(-22, 22, offset * 10);
             },
             duration: 5.5,
-            ease: "sine.inOut",
+            ease: 'sine.inOut',
             yoyo: true,
             repeat: -1,
             stagger: {
               each: 0.4,
-              from: "center",
+              from: 'center',
             },
           });
 
@@ -102,12 +102,12 @@ export const useOpenSourceShowcaseAnimation = (
               x: (i) => (i - (planets.length - 1) / 2) * 4,
               scale: 1.1,
               duration: 4,
-              ease: "sine.inOut",
+              ease: 'sine.inOut',
               yoyo: true,
               repeat: -1,
               stagger: {
                 each: 0.6,
-                from: "edges",
+                from: 'edges',
               },
             });
           }

@@ -1,7 +1,7 @@
-import { useLayoutEffect } from "react";
-import { gsap } from "gsap";
-import { MotionPathPlugin } from "gsap/MotionPathPlugin";
-import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
+import { useLayoutEffect } from 'react';
+import { gsap } from 'gsap';
+import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
+import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
 
 gsap.registerPlugin(MotionPathPlugin, ScrambleTextPlugin);
 
@@ -39,7 +39,7 @@ export const useHeroAnimation = (
     if (!introReady || !rootRef.current) return;
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
       tl.fromTo(
         rootRef.current,
@@ -49,22 +49,22 @@ export const useHeroAnimation = (
 
       if (titleRef.current) {
         const words =
-          titleRef.current.querySelectorAll<HTMLElement>(".hero-word");
+          titleRef.current.querySelectorAll<HTMLElement>('.hero-word');
 
         words.forEach((word, index) => {
-          const finalText = word.textContent || "";
+          const finalText = word.textContent || '';
           // Clear initial text first to avoid a flash before scramble animation
-          word.textContent = "";
+          word.textContent = '';
 
           gsap.to(word, {
             duration: 1.4,
             delay: 0.4 + index * 0.12,
             scrambleText: {
               text: finalText,
-              chars: "01/\\_-+*",
+              chars: '01/\\_-+*',
               speed: 0.4,
             },
-            ease: "power2.out",
+            ease: 'power2.out',
           });
         });
       }
@@ -79,13 +79,13 @@ export const useHeroAnimation = (
           opacity: 1,
           duration: 0.8,
           delay: 0.8,
-          ease: "power1.out",
+          ease: 'power1.out',
         });
 
         gsap.to(dot, {
           duration: 18,
           repeat: -1,
-          ease: "none",
+          ease: 'none',
           motionPath: {
             path,
             align: path,
@@ -103,7 +103,7 @@ export const useHeroAnimation = (
           duration: 16,
           repeat: -1,
           yoyo: true,
-          ease: "sine.inOut",
+          ease: 'sine.inOut',
         });
       }
 
@@ -115,7 +115,7 @@ export const useHeroAnimation = (
           duration: 20,
           repeat: -1,
           yoyo: true,
-          ease: "sine.inOut",
+          ease: 'sine.inOut',
         });
       }
 
@@ -127,7 +127,7 @@ export const useHeroAnimation = (
           duration: 14,
           repeat: -1,
           yoyo: true,
-          ease: "sine.inOut",
+          ease: 'sine.inOut',
         });
       }
 
@@ -137,7 +137,7 @@ export const useHeroAnimation = (
           duration: 3,
           repeat: -1,
           yoyo: true,
-          ease: "sine.inOut",
+          ease: 'sine.inOut',
         });
       }
 
@@ -147,7 +147,7 @@ export const useHeroAnimation = (
           duration: 3,
           repeat: -1,
           yoyo: true,
-          ease: "sine.inOut",
+          ease: 'sine.inOut',
         });
       }
 
@@ -156,7 +156,7 @@ export const useHeroAnimation = (
           subtitleRef.current,
           { y: 24, opacity: 0 },
           { y: 0, opacity: 1, duration: 0.8 },
-          ">-0.1"
+          '>-0.1'
         );
       }
 
@@ -181,7 +181,7 @@ export const useHeroAnimation = (
             gsap.to(leftEl, {
               x: leftOffset,
               duration: 0.35,
-              ease: "sine.out",
+              ease: 'sine.out',
             });
           }
 
@@ -196,17 +196,17 @@ export const useHeroAnimation = (
             gsap.to(rightEl, {
               x: rightOffset,
               duration: 0.35,
-              ease: "sine.out",
+              ease: 'sine.out',
             });
           }
         };
 
-        window.addEventListener("mousemove", handleMouseMove);
+        window.addEventListener('mousemove', handleMouseMove);
       }
 
       return () => {
         if (handleMouseMove) {
-          window.removeEventListener("mousemove", handleMouseMove);
+          window.removeEventListener('mousemove', handleMouseMove);
         }
       };
     }, rootRef);
