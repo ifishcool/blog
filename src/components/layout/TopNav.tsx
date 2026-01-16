@@ -46,17 +46,21 @@ const TopNav = forwardRef<HTMLElement, TopNavProps>(
           </div>
 
           <div className='top-nav-center'>
-            <span className='top-nav-logo'>LENGYU XIANFENG</span>
+            <span className='top-nav-logo'>
+              <span className='top-nav-logo-text ma-shan-zheng-regular'>
+                冷鱼闲风
+              </span>
+            </span>
           </div>
 
           <div className='top-nav-right'>
             <div className='top-nav-actions'>
-              <button
-                type='button'
-                className='top-nav-pill top-nav-pill-accent'
-              >
-                Join
-              </button>
+              <img
+                draggable={false}
+                src='/logo.png'
+                alt='Logo'
+                className='top-nav-logo-icon'
+              />
             </div>
           </div>
 

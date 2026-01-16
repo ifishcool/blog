@@ -10,6 +10,8 @@
   justify-content: center;
 
   z-index: 80;
+  opacity: 0; /* 初始透明，避免闪烁 */
+  will-change: opacity;
 }
 
 .project-modal-panel {
@@ -33,6 +35,8 @@
   padding: 1.6rem 1.7rem 1.5rem;
   display: flex;
   flex-direction: column;
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .project-modal-header {

@@ -59,7 +59,7 @@ const Hero = ({ introReady = true }: HeroProps) => {
         <span>DEV · AI · DESIGN</span>
       </div>
       <div className='side-text side-text-right' ref={rightTextRef}>
-        <span>PORTFOLIO · 2025</span>
+        <span>PORTFOLIO · 20XX</span>
       </div>
 
       <section className='hero-content'>

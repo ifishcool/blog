@@ -13,6 +13,13 @@
   font-style: normal;
   font-display: swap;
 }
+@font-face {
+  font-family: 'Ma Shan Zheng';
+  src: url('./assets/MaShanZheng-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
   font-family:
@@ -53,6 +60,11 @@ a:hover {
 
 .pacifico-regular {
   font-family: 'PacificoLocal', cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.ma-shan-zheng-regular {
+  font-family: 'Ma Shan Zheng', cursive;
   font-weight: 400;
   font-style: normal;
 }
@@ -719,6 +731,24 @@ body::-webkit-scrollbar-thumb {
 .top-nav-cta:hover {
   background: #fdfdfd;
   color: #111;
+}
+
+/* Top nav logo with small icon + text */
+.top-nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.top-nav-logo-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  object-fit: contain;
+}
+
+.top-nav-logo-text {
+  display: inline-block;
 }
 
 @media (max-width: 768px) {

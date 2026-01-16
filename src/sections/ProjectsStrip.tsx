@@ -169,11 +169,21 @@ const ProjectsStrip = ({ introReady = true, shellRef }: ProjectsStripProps) => {
     if (!activeProject || !sectionRef.current) return;
 
     const ctx = gsap.context(() => {
+      const overlay = sectionRef.current!.querySelector<HTMLElement>(
+        '.project-modal-overlay'
+      );
       const panel = sectionRef.current!.querySelector<HTMLElement>(
         '.project-modal-panel'
       );
 
-      if (!panel) return;
+      if (!overlay || !panel) return;
+
+      gsap.set(overlay, { opacity: 0 });
+      gsap.to(overlay, {
+        opacity: 1,
+        duration: 0.3,
+        ease: 'power2.out',
+      });
 
       gsap.fromTo(
         panel,

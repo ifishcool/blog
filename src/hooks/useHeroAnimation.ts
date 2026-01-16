@@ -53,11 +53,11 @@ export const useHeroAnimation = (
 
         words.forEach((word, index) => {
           const finalText = word.textContent || '';
-          // Clear initial text first to avoid a flash before scramble animation
-          word.textContent = '';
+
+          word.textContent = '____';
 
           gsap.to(word, {
-            duration: 1.4,
+            duration: 2,
             delay: 0.4 + index * 0.12,
             scrambleText: {
               text: finalText,
@@ -161,44 +161,48 @@ export const useHeroAnimation = (
       }
 
       let handleMouseMove: ((event: MouseEvent) => void) | undefined;
+      let rafId: number | undefined;
 
       if (leftTextRef.current || rightTextRef.current) {
         const leftEl = leftTextRef.current;
         const rightEl = rightTextRef.current;
 
         handleMouseMove = (event: MouseEvent) => {
-          const vw = window.innerWidth || 1;
-          const threshold = 140; // Pixels from each edge
-          const x = event.clientX;
+          if (rafId) cancelAnimationFrame(rafId);
+          rafId = requestAnimationFrame(() => {
+            const vw = window.innerWidth || 1;
+            const threshold = 140; // Pixels from each edge
+            const x = event.clientX;
 
-          // Left side: closer to left edge, text moves slightly inward
-          if (leftEl) {
-            const leftIntensity = Math.max(
-              0,
-              Math.min(1, (threshold - x) / threshold)
-            );
-            const leftOffset = leftIntensity * 14; // Offset to the right
-            gsap.to(leftEl, {
-              x: leftOffset,
-              duration: 0.35,
-              ease: 'sine.out',
-            });
-          }
+            // Left side: closer to left edge, text moves slightly inward
+            if (leftEl) {
+              const leftIntensity = Math.max(
+                0,
+                Math.min(1, (threshold - x) / threshold)
+              );
+              const leftOffset = leftIntensity * 14; // Offset to the right
+              gsap.to(leftEl, {
+                x: leftOffset,
+                duration: 0.35,
+                ease: 'sine.out',
+              });
+            }
 
-          // Right side: closer to right edge, text moves slightly inward
-          if (rightEl) {
-            const rightDist = vw - x;
-            const rightIntensity = Math.max(
-              0,
-              Math.min(1, (threshold - rightDist) / threshold)
-            );
-            const rightOffset = -rightIntensity * 14; // Offset to the left
-            gsap.to(rightEl, {
-              x: rightOffset,
-              duration: 0.35,
-              ease: 'sine.out',
-            });
-          }
+            // Right side: closer to right edge, text moves slightly inward
+            if (rightEl) {
+              const rightDist = vw - x;
+              const rightIntensity = Math.max(
+                0,
+                Math.min(1, (threshold - rightDist) / threshold)
+              );
+              const rightOffset = -rightIntensity * 14; // Offset to the left
+              gsap.to(rightEl, {
+                x: rightOffset,
+                duration: 0.35,
+                ease: 'sine.out',
+              });
+            }
+          });
         };
 
         window.addEventListener('mousemove', handleMouseMove);
@@ -208,6 +212,10 @@ export const useHeroAnimation = (
         if (handleMouseMove) {
           window.removeEventListener('mousemove', handleMouseMove);
         }
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+        }
+        handleMouseMove = undefined;
       };
     }, rootRef);
 
