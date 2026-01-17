@@ -32,6 +32,24 @@
   display: flex;
   align-items: center;
   gap: 1.5rem;
+
+  position: relative;
+}
+
+.projects-timeline-row::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    rgba(182, 255, 43, 0.4) 50%,
+    transparent 50%
+  );
+  background-size: 8px 1px;
+  z-index: -1;
 }
 
 .projects-card-row {
@@ -43,17 +61,22 @@
 .projects-timeline-item {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+
   flex-shrink: 0;
   width: 317.3px;
+  position: relative;
+  z-index: 1;
 }
 
 .projects-timeline-dot {
   width: 8px;
   height: 8px;
   border-radius: 50%;
+
   background-color: rgba(182, 255, 43, 0.9);
   box-shadow: 0 0 10px rgba(182, 255, 43, 0.6);
+  position: relative;
+  z-index: 3;
 }
 
 .projects-timeline-date {
@@ -61,6 +84,11 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: rgba(245, 245, 245, 0.7);
+  background-color: #000;
+  padding: 0 0.6rem;
+  border-radius: 25px;
+  position: relative;
+  z-index: 2;
 }
 
 .projects-orbit-layer {
