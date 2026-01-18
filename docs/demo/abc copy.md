@@ -1,3 +1,10 @@
+---
+title: ArenaPro 2
+meta: Docs · Demo2
+desc: 欢迎来到 ArenaPro React 示例文档。2
+timeline: 2024.03
+---
+
 # 欢迎来到 ArenaPro React
 
 ## 什么是 ArenaPro React？
