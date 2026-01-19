@@ -5,7 +5,7 @@ import remarkFrontmatter from 'remark-frontmatter';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
-import tsconfigPaths from 'vite-tsconfig-paths';
+import { fileURLToPath, URL } from 'node:url';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -15,9 +15,13 @@ export default defineConfig({
       rehypePlugins: [rehypeHighlight],
     }),
     react(),
-    tsconfigPaths(),
   ],
-
+  resolve: {
+    alias: {
+      '@docs': fileURLToPath(new URL('./docs', import.meta.url)),
+      '@ifc': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
   build: {
     chunkSizeWarningLimit: 800,
     rollupOptions: {

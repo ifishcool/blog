@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { OSS_REPOS, type OpenSourceRepoCard } from '@ifc/config/openSource';
 import { useOpenSourceShowcaseAnimation } from '@ifc/hooks/useOpenSourceShowcaseAnimation';
-
+import clickSmallSound from '@ifc/assets/sounds/clickSmall.mp3';
 const OSS_PAGE_SIZE = 3;
 const OSS_TOTAL_PAGES = Math.ceil(OSS_REPOS.length / OSS_PAGE_SIZE);
 
@@ -62,7 +62,7 @@ const OpenSourceShowcase = () => {
 
               try {
                 if (!hoverAudioRef.current) {
-                  hoverAudioRef.current = new Audio('/clickSmall.mp3');
+                  hoverAudioRef.current = new Audio(clickSmallSound);
                   hoverAudioRef.current.volume = 0.3;
                 }
 

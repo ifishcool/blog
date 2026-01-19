@@ -1,14 +1,13 @@
 /* App layout */
-@import './styles/project-modal.css';
-@import './styles/project-modal.css';
-@import './styles/hero.css';
-@import './styles/projects-strip.css';
-@import './styles/text-scene.css';
-@import './styles/oss-section.css';
-@import './styles/big-footer.css';
+@import '@ifc/assets/styles/project-modal.css';
+@import '@ifc/assets/styles/hero.css';
+@import '@ifc/assets/styles/projects-strip.css';
+@import '@ifc/assets/styles/text-scene.css';
+@import '@ifc/assets/styles/oss-section.css';
+@import '@ifc/assets/styles/big-footer.css';
 @font-face {
   font-family: 'PacificoLocal';
-  src: url('./assets/Pacifico-Regular.ttf') format('truetype');
+  src: url('@ifc/assets/fonts/Pacifico-Regular.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -59,7 +58,7 @@ a:hover {
 
 body {
   cursor:
-    url('/cursor-cartoon.png') 11 11,
+    url('@ifc/assets/images/cursor-cartoon.png') 11 11,
     auto;
 }
 
@@ -69,7 +68,7 @@ a[href],
 #card-click,
 .cursor-pointer {
   cursor:
-    url('/cursor-cartoon-button.png') 32 32,
+    url('@ifc/assets/images/cursor-cartoon-button.png') 32 32,
     pointer;
 }
 ::selection {

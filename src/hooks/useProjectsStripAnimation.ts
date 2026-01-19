@@ -1,6 +1,7 @@
 import { useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import clickSmallSound from '@ifc/assets/sounds/clickSmall.mp3';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -45,7 +46,7 @@ export const useProjectsStripAnimation = (
           if (hoverAudioRef) {
             try {
               if (!hoverAudioRef.current) {
-                hoverAudioRef.current = new Audio('/clickSmall.mp3');
+                hoverAudioRef.current = new Audio(clickSmallSound);
                 hoverAudioRef.current.volume = 0.3;
               }
 

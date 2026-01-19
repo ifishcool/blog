@@ -1,4 +1,5 @@
 import React from 'react';
+import clickSound from '@ifc/assets/sounds/click.mp3';
 
 export type IntroGateProps = {
   visible: boolean;
@@ -15,7 +16,7 @@ const IntroGate: React.FC<IntroGateProps> = ({
 
   const handleEnterClick = () => {
     try {
-      const audio = new Audio('/click.mp3');
+      const audio = new Audio(clickSound);
       audio.volume = 0.3;
       audio.play().catch(() => {
         // Ignore play errors (e.g. autoplay restrictions)

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, useMemo, type RefObject } from 'react';
 import { gsap } from 'gsap';
-
+import expandSound from '@ifc/assets/sounds/expand.mp3';
 import {
   mdxFiles,
   PROJECT_CARDS,
@@ -111,7 +111,7 @@ const ProjectsStrip = ({ introReady = true, shellRef }: ProjectsStripProps) => {
   const handleCardClick = (project: ProjectCard) => {
     try {
       if (!expandAudioRef.current) {
-        expandAudioRef.current = new Audio('/expand.mp3');
+        expandAudioRef.current = new Audio(expandSound);
         expandAudioRef.current.volume = 0.4;
       }
 

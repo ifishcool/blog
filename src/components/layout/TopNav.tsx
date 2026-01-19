@@ -1,7 +1,6 @@
 import React, { forwardRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
-
 gsap.registerPlugin(ScrollToPlugin);
 
 export type TopNavProps = {
