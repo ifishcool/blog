@@ -34,7 +34,20 @@ const THUMB_CLASSES: string[] = [
 
 const ProjectsStrip = ({ introReady = true, shellRef }: ProjectsStripProps) => {
   const sectionRef = useRef<HTMLElement | null>(null);
-  const [activeProject, setActiveProject] = useState<ProjectCard | null>(null);
+  const [activeProject, setActiveProject] = useState<ProjectCard | null>(() => {
+    const params = new URLSearchParams(window.location.search);
+    const titleParam = params.get('title');
+    if (!titleParam) return null;
+
+    const normalized = titleParam.trim().toLowerCase();
+    if (!normalized) return null;
+
+    const target = PROJECT_CARDS.find((p) =>
+      p.title.trim().toLowerCase().includes(normalized)
+    );
+
+    return target ?? null;
+  });
   const hoverAudioRef = useRef<HTMLAudioElement | null>(null);
   const expandAudioRef = useRef<HTMLAudioElement | null>(null);
 
