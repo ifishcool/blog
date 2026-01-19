@@ -1423,8 +1423,6 @@ body::-webkit-scrollbar-thumb {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #0b0b0b;
-  -webkit-text-stroke: 1px rgba(249, 250, 251, 0.9);
-  text-stroke: 1px rgba(249, 250, 251, 0.9);
 }
 
 .big-footer-meta {

@@ -6,9 +6,9 @@ timeline: 2024.03
 ---
 
 import React from 'react';
-import counterStyles from '../styles/Counter.module.css';
-import todoStyles from '../styles/TodoList.module.css';
-import colorPickerStyles from '../styles/ColorPicker.module.css';
+import '@docs/styles/Counter.css';
+import todoStyles from '@docs/styles/TodoList.module.css';
+import colorPickerStyles from '@docs/styles/ColorPicker.module.css';
 
 # 欢迎来到 ArenaPro React
 
@@ -163,28 +163,25 @@ npm test
 export const Counter = () => {
   const [count, setCount] = React.useState(0);
   return (
-    <div className={counterStyles.counterContainer}>
-      <h3 className={counterStyles.counterTitle}>计数器组件</h3>
-      <p className={counterStyles.counterDisplay}>
-        当前计数: <strong>{count}</strong>
+    <div className={'counterContainer'}>
+      <h3 className={'counterTitle'}>计数器组件</h3>
+      <p className={'counterDisplay'}>
+        当前计数2: <strong>{count}</strong>
       </p>
-      <div className={counterStyles.buttonGroup}>
+      <div className={'buttonGroup'}>
         <button
           onClick={() => setCount(count + 1)}
-          className={`${counterStyles.button} ${counterStyles.buttonIncrement}`}
+          className={`button buttonIncrement`}
         >
           +1
         </button>
         <button
           onClick={() => setCount(count - 1)}
-          className={`${counterStyles.button} ${counterStyles.buttonDecrement}`}
+          className={`button buttonDecrement`}
         >
           -1
         </button>
-        <button
-          onClick={() => setCount(0)}
-          className={`${counterStyles.button} ${counterStyles.buttonReset}`}
-        >
+        <button onClick={() => setCount(0)} className={`button buttonReset`}>
           重置
         </button>
       </div>
@@ -193,35 +190,6 @@ export const Counter = () => {
 };
 
 <Counter />
-
-## 颜色选择器组件
-
-export const ColorPicker = () => {
-  const [selectedColor, setSelectedColor] = React.useState('#58a6ff');
-  const colors = ['#58a6ff', '#28a745', '#dc3545', '#ffc107', '#6f42c1', '#fd7e14'];
-
-return (
-<div className={colorPickerStyles.colorPickerContainer}>
-<h3 className={colorPickerStyles.colorPickerTitle}>🎨 颜色选择器</h3>
-<div className={colorPickerStyles.colorDisplay} style={{ backgroundColor: selectedColor }}></div>
-<div className={colorPickerStyles.colorOptions}>
-{colors.map(color => (
-<button
-key={color}
-onClick={() => setSelectedColor(color)}
-className={`${colorPickerStyles.colorButton} ${selectedColor === color ? colorPickerStyles.selected : ''}`}
-style={{ backgroundColor: color }}
-/>
-))}
-</div>
-<div className={colorPickerStyles.colorValue}>
-当前颜色: {selectedColor}
-</div>
-</div>
-);
-};
-
-<ColorPicker />
 
 ## 特性展示
 
