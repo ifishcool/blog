@@ -1,4 +1,4 @@
-import { Suspense, useRef } from 'react';
+import { useRef } from 'react';
 import '@ifc/App.css';
 import Hero from '@ifc/sections/Hero';
 import IntroGate from '@ifc/components/layout/IntroGate';
@@ -50,24 +50,16 @@ function App() {
             />
             <Hero introReady={introReady} />
             <div id='projects'>
-              <Suspense fallback={null}>
-                <ProjectsStrip introReady={introReady} shellRef={shellRef} />
-              </Suspense>
+              <ProjectsStrip introReady={introReady} shellRef={shellRef} />
             </div>
             <div id='about'>
-              <Suspense fallback={null}>
-                <TextScene />
-              </Suspense>
+              <TextScene />
             </div>
             <div id='notes'>
-              <Suspense fallback={null}>
-                <OpenSourceShowcase />
-              </Suspense>
+              <OpenSourceShowcase />
             </div>
             <div id='contact'>
-              <Suspense fallback={null}>
-                <BigFooter />
-              </Suspense>
+              <BigFooter />
             </div>
           </div>
         </div>

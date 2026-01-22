@@ -309,6 +309,7 @@ const ProjectsStrip = ({ introReady = true, shellRef }: ProjectsStripProps) => {
                 <div>
                   <div className='project-modal-label'>PROJECT STORY</div>
                   <h2 className='project-modal-title'>{activeProject.title}</h2>
+
                   <div className='project-modal-meta'>{activeProject.meta}</div>
                 </div>
                 <button
@@ -316,7 +317,7 @@ const ProjectsStrip = ({ introReady = true, shellRef }: ProjectsStripProps) => {
                   className='project-modal-close'
                   onClick={handleCloseProject}
                 >
-                  Close
+                  关闭
                 </button>
               </div>
 
